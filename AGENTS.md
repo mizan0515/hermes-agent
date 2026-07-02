@@ -1291,6 +1291,19 @@ scripts/run_tests.sh tests/agent/test_foo.py::test_x  # one test
 scripts/run_tests.sh -v --tb=long                     # pass-through pytest flags
 ```
 
+Before reporting PASS, PR_READY, or merge-ready on code changes, run the required
+local gate too:
+
+```bash
+python scripts/local_ci.py                            # changed-file scoped gate
+python scripts/local_ci.py --full                     # deliberate full-tree gate
+python scripts/local_ci.py --install-git-hooks        # one-time pre-push hook setup
+```
+
+If `scripts/local_ci.py` reports BLOCKED because a required checker cannot run,
+do not downgrade it to a warning and do not report PASS. Fix the checker or
+report BLOCKED with the local output.
+
 ### Subprocess-per-test-file isolation
 
 Every test file runs in a freshly-spawned Python subprocess via `run_tests_parallel.py`. This means module-level dicts/sets and
