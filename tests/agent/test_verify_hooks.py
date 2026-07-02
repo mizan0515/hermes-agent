@@ -51,3 +51,11 @@ class TestCodingVerifyGuidance:
     def test_opt_out_via_config(self):
         off = {"agent": {"verify_guidance": False}}
         assert verify_hooks.coding_verify_guidance(off) is None
+
+    def test_required_gate_cannot_be_reported_as_pass_when_unverified(self):
+        guidance = verify_hooks.coding_verify_guidance({})
+
+        assert guidance is not None
+        assert "required gate" in guidance.lower()
+        assert "BLOCKED" in guidance
+        assert "never PASS" in guidance

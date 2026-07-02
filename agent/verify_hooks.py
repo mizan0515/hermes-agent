@@ -26,9 +26,12 @@ DEFAULT_MAX_VERIFY_NUDGES = 3
 CODING_VERIFY_GUIDANCE = (
     "[Coding] Before you run tests/linters or call this done: if this is "
     "creative UI/visual work, hold off on tests and linters until the user says "
-    "they like the result or you're about to commit. And before every commit, "
-    "clean your work: keep it KISS/DRY, match the surrounding code style, and be "
-    "elitist, shorthand, clever, concise, efficient, and elegant."
+    "they like the result or you're about to commit. Required gate rule: if a "
+    "mandatory test/lint/style/security gate cannot be executed or verified, "
+    "the outcome is BLOCKED/FAIL, never PASS with caveats. Run the gate or name "
+    "the blocker. And before every commit, clean your work: keep it KISS/DRY, "
+    "match the surrounding code style, and be elitist, shorthand, clever, "
+    "concise, efficient, and elegant."
 )
 
 
